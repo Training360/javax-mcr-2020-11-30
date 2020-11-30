@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.time.LocalDateTime;
-
 @Controller
 public class HelloController {
 
@@ -20,7 +18,14 @@ public class HelloController {
     @RequestMapping("/hello")
     @ResponseBody
     public String sayHello() {
-        return helloService.sayHello();
+        String message = helloService.sayHello();
+        if (message != null) {
+            System.out.println(message);
+            return message.toUpperCase();
+        }
+        else {
+            return "";
+        }
     }
 
 }
