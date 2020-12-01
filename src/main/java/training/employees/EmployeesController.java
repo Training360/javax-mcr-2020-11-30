@@ -1,5 +1,7 @@
 package training.employees;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,12 @@ public class EmployeesController {
         return employeesService.findAll(prefix);
     }
 
+    @Operation(summary = "Find employee by id",
+            description = "Find employee by id.")
+    @ApiResponse(responseCode = "200",
+            description = "Employee has been found")
+    @ApiResponse(responseCode = "404",
+            description = "Employee not found")
     @GetMapping("/{id}")
     public EmployeeDto findById(@PathVariable long id) {
         return employeesService.findById(id);
