@@ -1,5 +1,6 @@
 package training.employees;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,4 +11,10 @@ public class ServiceConfig {
 //	public HelloService helloService() {
 //		return new HelloService();
 //	}
+
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 }
