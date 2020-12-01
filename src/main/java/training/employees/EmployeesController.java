@@ -3,7 +3,6 @@ package training.employees;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -41,9 +40,10 @@ public class EmployeesController {
         employeesService.delete(id);
     }
 
-    @ExceptionHandler(EmployeeNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleIllegalArgumentException(EmployeeNotFoundException e) {
-        System.out.println("Error");
-    }
+//    @ExceptionHandler(EmployeeNotFoundException.class)
+//    @ResponseStatus(HttpStatus.NOT_FOUND)
+//    public void handleIllegalArgumentException(EmployeeNotFoundException e) {
+//        System.out.println("Error");
+//    }
+
 }
