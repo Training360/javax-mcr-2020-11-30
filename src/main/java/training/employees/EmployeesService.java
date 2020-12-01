@@ -58,4 +58,8 @@ public class EmployeesService {
                 .findAny().orElseThrow(() -> new EmployeeNotFoundException(id));
         employees.remove(employee);
     }
+
+    public void clear() {
+        employees.clear();
+    }
 }
