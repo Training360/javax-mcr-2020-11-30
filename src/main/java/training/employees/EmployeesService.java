@@ -1,8 +1,11 @@
 package training.employees;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class EmployeesService {
 
     private static final AtomicLong idGenerator = new AtomicLong();
@@ -39,6 +43,8 @@ public class EmployeesService {
     }
 
     public EmployeeDto create(CreateEmployeeCommand command) {
+        log.info("Create employee");
+        log.debug("Create employee with name" + command.getName());
         Employee employee = new Employee(idGenerator.incrementAndGet(), command.getName());
         employees.add(employee);
         return modelMapper.map(employee, EmployeeDto.class);
