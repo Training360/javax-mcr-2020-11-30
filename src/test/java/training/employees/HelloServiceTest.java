@@ -9,7 +9,9 @@ public class HelloServiceTest {
     @Test
     void testSayHello() {
         // Given
-        HelloService helloService = new HelloService();
+        EmployeesConfig employeesConfig = new EmployeesConfig();
+        employeesConfig.setMessage("Hello Spring Boot");
+        HelloService helloService = new HelloService(employeesConfig);
         // When
         String message = helloService.sayHello();
         // Then
