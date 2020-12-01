@@ -10,10 +10,16 @@ import javax.validation.constraints.NotBlank;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+//@CreateEmployeeValidation
 public class CreateEmployeeCommand {
 
     @Schema(description="name of the employee", example = "John Doe")
 
     @NotBlank(message = "name of the employee can not be empty")
     private String name;
+
+//    private int length;
+
+//    @CdvValidation
+//    private String adoszam;
 }
