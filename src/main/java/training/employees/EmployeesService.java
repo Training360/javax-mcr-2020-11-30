@@ -8,15 +8,18 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class EmployeesService {
 
+    private static final AtomicLong idGenerator = new AtomicLong();
+
     private static final List<Employee> employees =
-            new ArrayList<>(List.of(new Employee(1L, "John Doe"),
-                    new Employee(2L, "Jane Doe")));
+            new ArrayList<>(List.of(new Employee(idGenerator.incrementAndGet(), "John Doe"),
+                    new Employee(idGenerator.incrementAndGet(), "Jane Doe")));
 
     private final ModelMapper modelMapper;
 
@@ -26,5 +29,33 @@ public class EmployeesService {
                 .filter(e -> prefix.isEmpty() || e.getName().startsWith(prefix.get()))
                 .collect(Collectors.toList())
                 , targetListType);
+    }
+
+    public EmployeeDto findById(long id) {
+        return employees.stream()
+                .filter(e -> e.getId() == id)
+                .map(e -> modelMapper.map(e, EmployeeDto.class))
+                .findAny().orElseThrow(() -> new IllegalArgumentException("Employee not found with id " + id));
+    }
+
+    public EmployeeDto create(CreateEmployeeCommand command) {
+        Employee employee = new Employee(idGenerator.incrementAndGet(), command.getName());
+        employees.add(employee);
+        return modelMapper.map(employee, EmployeeDto.class);
+    }
+
+    public EmployeeDto update(long id, UpdateEmployeeCommand command) {
+        Employee employee = employees.stream()
+                .filter(e -> e.getId() == id)
+                .findAny().orElseThrow(() -> new IllegalArgumentException("Employee not found with id " + id));
+        employee.setName(command.getName());
+        return modelMapper.map(employee, EmployeeDto.class);
+    }
+
+    public void delete(long id) {
+        Employee employee = employees.stream()
+                .filter(e -> e.getId() == id)
+                .findAny().orElseThrow(() -> new IllegalArgumentException("Employee not found with id " + id));
+        employees.remove(employee);
     }
 }
