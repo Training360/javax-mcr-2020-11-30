@@ -16,6 +16,15 @@ Content-Type: application/json
   "name": "John Doe"
 }
 
+### Validation error
+
+POST http://localhost:8080/api/employees
+Content-Type: application/json
+
+{
+  "name": " "
+}
+
 ###
 
 PUT http://localhost:8080/api/employees/1

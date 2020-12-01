@@ -5,6 +5,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +35,7 @@ public class EmployeesController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public EmployeeDto create(@RequestBody CreateEmployeeCommand command) {
+    public EmployeeDto create(@Valid @RequestBody CreateEmployeeCommand command) {
         return employeesService.create(command);
     }
 
