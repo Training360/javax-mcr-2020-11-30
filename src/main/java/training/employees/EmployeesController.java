@@ -1,6 +1,7 @@
 package training.employees;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class EmployeesController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public EmployeeDto create(@RequestBody CreateEmployeeCommand command) {
         return employeesService.create(command);
     }
@@ -34,7 +36,14 @@ public class EmployeesController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id) {
         employeesService.delete(id);
+    }
+
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public void handleIllegalArgumentException(EmployeeNotFoundException e) {
+        System.out.println("Error");
     }
 }
