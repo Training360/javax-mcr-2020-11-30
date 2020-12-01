@@ -9,6 +9,7 @@ public class CreateEmployeeValidator implements ConstraintValidator<CreateEmploy
 
     public boolean isValid(CreateEmployeeCommand command, ConstraintValidatorContext context) {
         // Validáció
-        return command.getName().length() == command.getLength();
+        //return command.getName().length() == command.getLength();
+        return true;
     }
 }
