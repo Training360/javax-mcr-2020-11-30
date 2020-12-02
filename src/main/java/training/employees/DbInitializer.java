@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-@Component
+// @Component
 @AllArgsConstructor
 public class DbInitializer implements CommandLineRunner {
 
