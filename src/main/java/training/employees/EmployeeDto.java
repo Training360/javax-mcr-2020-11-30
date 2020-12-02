@@ -13,4 +13,10 @@ public class EmployeeDto {
 
     private String name;
 
+    private AddressDto addressDto;
+
+    public EmployeeDto(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

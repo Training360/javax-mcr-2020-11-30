@@ -12,6 +12,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultHandler;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.sql.ResultSet;
@@ -42,8 +44,8 @@ public class EmployeesIT {
 //        jdbcTemplate.update("delete from employees");
 //    }
 
-//    @Test
-    @RepeatedTest(2)
+    @Test
+//    @RepeatedTest(2)
     @DisplayName("TC-1030 - Save two employees than list them")
     void testSaveAndFindAll() throws Exception {
         mockMvc.perform(

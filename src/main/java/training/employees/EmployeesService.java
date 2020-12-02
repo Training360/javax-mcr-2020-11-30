@@ -17,6 +17,8 @@ public class EmployeesService {
 
     private EmployeesRepository employeesRepository;
 
+    private AddressesGateway addressesGateway;
+
     private final ModelMapper modelMapper;
 
     public List<EmployeeDto> findAll(Optional<String> prefix) {
@@ -26,9 +28,13 @@ public class EmployeesService {
     }
 
     public EmployeeDto findById(long id) {
-        return modelMapper.map(employeesRepository.findById(id)
+        EmployeeDto result =  modelMapper.map(employeesRepository.findById(id)
                 .orElseThrow(() -> new EmployeeNotFoundException(id))
                 , EmployeeDto.class);
+
+        result.setAddressDto(addressesGateway.getAddress(result.getName()));
+
+        return result;
     }
 
     public EmployeeDto create(CreateEmployeeCommand command) {

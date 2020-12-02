@@ -17,16 +17,16 @@ public class EmployeesRepositoryIT {
     @Autowired
     EmployeesRepository employeesRepository;
 
-    @Test
-    void testCreateThanList() {
-        employeesRepository.save(new Employee("John Doe"));
-        employeesRepository.save(new Employee("Jane Doe"));
-
-        List<Employee> employees = employeesRepository.findAll(
-                Sort.by("name")
-        );
-        assertThat(employees)
-                .extracting(Employee::getName)
-                .containsExactly("Jane Doe", "John Doe");
-    }
+//    @Test
+//    void testCreateThanList() {
+//        employeesRepository.save(new Employee("John Doe"));
+//        employeesRepository.save(new Employee("Jane Doe"));
+//
+//        List<Employee> employees = employeesRepository.findAll(
+//                Sort.by("name")
+//        );
+//        assertThat(employees)
+//                .extracting(Employee::getName)
+//                .containsExactly("Jane Doe", "John Doe");
+//    }
 }
