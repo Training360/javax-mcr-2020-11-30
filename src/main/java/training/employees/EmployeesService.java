@@ -50,10 +50,4 @@ public class EmployeesService {
     public void delete(long id) {
         employeesRepository.deleteById(id);
     }
-
-    public void clear() {
-
-        // TODO Teszthez kell?
-
-    }
 }
