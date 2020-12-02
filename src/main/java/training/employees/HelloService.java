@@ -24,6 +24,6 @@ public class HelloService {
     public String sayHello() {
         // Üzleti logika
 //        return welcome + " " + LocalDateTime.now();
-        return employeesConfig.getMessage() + LocalDateTime.now();
+        return employeesConfig.getMessage() + " " + LocalDateTime.now();
     }
 }
